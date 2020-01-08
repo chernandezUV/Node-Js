@@ -1,0 +1,34 @@
+# Registros
+registros
+* .log
+npm-debug.log *
+
+# Datos de tiempo de ejecución
+pids
+* .pid
+* .seed
+
+# Directorio para bibliotecas instrumentadas generadas por jscoverage / JSCover
+lib-cov
+
+# Directorio de cobertura utilizado por herramientas como Estambul
+cobertura
+
+# Almacenamiento intermedio Grunt (http://gruntjs.com/creating-plugins#storing-task-files)
+.gruñido
+
+# configuración de nodo-waf
+.lock-wscript
+
+# Complementos binarios compilados (http://nodejs.org/api/addons.html)
+construir / liberar
+
+# Directorios de dependencias
+nodo_módulos
+jspm_packages
+
+# Directorio de caché npm opcional
+.npm
+
+# Historial de REPL opcional
+.node_repl_history

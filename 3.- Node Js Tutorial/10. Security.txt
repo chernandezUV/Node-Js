@@ -1,0 +1,85 @@
+*************** Estilo de codificación segura  *********************
+
+-------------------- Regla 1: no usar eval ------------------
+
+Cada una de las siguientes expresiones usa eval:
+setInterval(String, 2)
+setTimeout(String, 2)
+new Function(String)
+
+
+------------------ Regla 2: siempre usa el modo estricto -------------
+'use strict' 
+
+------------------ Regla 3: manejar los errores con cuidado ----------
+Durante diferentes escenarios de error, su aplicación puede perder 
+datos sensibles sobre la infraestructura subyacente,
+como: X-Powered-By:Express.
+
+------------------ Regla 4: haga un análisis estático de su base de código ------------------ 
+El análisis estático de la base de código de su aplicación puede detectar muchos errores. 
+Para eso, sugerimos usar ESLint con el estilo de código estándar .
+
+
+*********** Ejecutando sus servicios en producción de forma segura *************
+
+------------------ Regla 5: no ejecutes tus procesos con derechos de superusuario ------------------ 
+Lamentablemente, vemos esto mucho: los desarrolladores están ejecutando su aplicación 
+Node.js con derechos de superusuario, ya que quieren que escuche en el puerto 80 o 443.
+
+Esto está mal En el caso de un error / error, su proceso puede derribar todo el sistema,
+ya que tiene credenciales para hacer cualquier cosa.
+
+
+------------------ Regla 6: configurar los encabezados HTTP obligatorios ------------------ 
+Hay algunos encabezados HTTP relacionados con la seguridad que su sitio debe configurar. Estos encabezados son:
+
+Strict-Transport-Security aplica conexiones seguras (HTTP sobre SSL / TLS) al servidor
+X-Frame-Options proporciona protección contra clics
+X-XSS-Protection habilita el filtro de secuencias de comandos entre sitios (XSS) integrado en los navegadores web más recientes
+X-Content-Type-Options evita que los navegadores detecten MIME una respuesta lejos del tipo de contenido declarado
+Content-Security-Policy previene una amplia gama de ataques, incluidas secuencias de comandos entre sitios y otras inyecciones entre sitios
+
+------------------ Regla 7: hacer una gestión de sesión adecuada ------------------ 
+La siguiente lista de banderas debe establecerse para cada cookie:
+
+seguro : este atributo le dice al navegador que solo envíe la cookie si la solicitud se envía a través de HTTPS.
+HttpOnly : este atributo se utiliza para ayudar a prevenir ataques como las secuencias de comandos entre sitios, 
+ya que no permite el acceso a la cookie a través de JavaScript.
+
+------------------ Regla 8: Establecer el alcance de la cookie ------------------
+ - dominio : este atributo se utiliza para comparar con el dominio del servidor en el que se solicita la URL. Si el dominio coincide o es un subdominio, el atributo de ruta se verificará a continuación.
+ - ruta : además del dominio, se puede especificar la ruta URL para la que la cookie es válida. Si el dominio y la ruta coinciden, la cookie se enviará en la solicitud.
+ - caduca : este atributo se utiliza para establecer cookies persistentes, ya que la cookie no caduca hasta que se supera la fecha establecida.
+
+********************  Herramientas para usar *************************
+
+------------------ Regla 9: Busque vulnerabilidades con Retire.js ------------------
+
+El objetivo de Retire.js es ayudarlo a detectar el uso de versiones de 
+módulos con vulnerabilidades conocidas.
+
+El comando retirar buscará vulnerabilidades 
+en su node_modulesdirectorio. (También tenga en cuenta que retire.js funciona no solo con módulos de nodo sino también con bibliotecas front-end).
+
+------------------   Regla 10: audite sus módulos con la CLI de Node Security Platform  ------------------ 
+nspes la interfaz de línea de comando principal para la plataforma de seguridad de nodo Permite auditar un archivo 
+package.jsono npm-shrinkwrap.jsoncontra la API de NSP para verificar si hay módulos vulnerables.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
